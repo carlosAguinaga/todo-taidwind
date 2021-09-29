@@ -7,13 +7,13 @@ import FilterTask from "./components/FilterTask";
 
 function App() {
   const [todoTitle, setTodoTitle] = useState("");
-  const [totalTask, setTotalTask] = useState([]);
+  const [totalTasks, setTotalTasks] = useState([]);
   const [currentFilter, setCurrentFilter] = useState("Todas");
 
   const handleAddTodo = (e) => {
     e.preventDefault();
-    setTotalTask([
-      ...totalTask,
+    setTotalTasks([
+      ...totalTasks,
       { id: Date.now(), title: todoTitle, completed: false, eliminated: false },
     ]);
     setTodoTitle("");
@@ -21,15 +21,15 @@ function App() {
 
   useEffect(() => {
     if (localStorage.getItem("todoList")) {
-      setTotalTask(JSON.parse(localStorage.getItem("todoList")));
+      setTotalTasks(JSON.parse(localStorage.getItem("todoList")));
     } else {
       localStorage.setItem("todoList", []);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("todoList", JSON.stringify(totalTask));
-  }, [totalTask]);
+    localStorage.setItem("todoList", JSON.stringify(totalTasks));
+  }, [totalTasks]);
 
   return (
     <div className="h-screen bg-blue-700 flex justify-center items-center">
@@ -42,27 +42,52 @@ function App() {
         />
 
         <TodoList>
-          {totalTask.map((item) => {
+          {totalTasks.map((item) => {
             switch (currentFilter) {
               case "Todas":
                 return !item.eliminated ? (
-                  <TodoItem item={item} key={item.id} />
+                  <TodoItem
+                    item={item}
+                    key={item.id}
+                    totalTasks={totalTasks}
+                    setTotalTasks={setTotalTasks}
+                  />
                 ) : undefined;
               case "Incompletas":
                 return !item.completed && !item.eliminated ? (
-                  <TodoItem item={item} key={item.id} />
+                  <TodoItem
+                    item={item}
+                    key={item.id}
+                    totalTasks={totalTasks}
+                    setTotalTasks={setTotalTasks}
+                  />
                 ) : undefined;
               case "Completadas":
                 return item.completed && !item.eliminated ? (
-                  <TodoItem item={item} key={item.id} />
+                  <TodoItem
+                    item={item}
+                    key={item.id}
+                    totalTasks={totalTasks}
+                    setTotalTasks={setTotalTasks}
+                  />
                 ) : undefined;
               case "Papelera":
                 return item.eliminated ? (
-                  <TodoItem item={item} key={item.id} />
+                  <TodoItem
+                    item={item}
+                    key={item.id}
+                    totalTasks={totalTasks}
+                    setTotalTasks={setTotalTasks}
+                  />
                 ) : undefined;
               default:
                 return !item.eliminated ? (
-                  <TodoItem item={item} key={item.id} />
+                  <TodoItem
+                    item={item}
+                    key={item.id}
+                    totalTasks={totalTasks}
+                    setTotalTasks={setTotalTasks}
+                  />
                 ) : undefined;
             }
           })}
