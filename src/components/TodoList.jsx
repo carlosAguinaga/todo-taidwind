@@ -2,7 +2,7 @@ import React from 'react'
 
 const TodoList = ({children}) => {
     return (
-        <div>
+        <div className="mt-7 bg-indigo-900">
             {children}
         </div>
     )
