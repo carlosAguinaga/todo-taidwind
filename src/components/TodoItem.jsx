@@ -1,9 +1,8 @@
 import React from "react";
 import deleteIcon from "../assets/deleteIcon.svg";
-// import back from "../assets/back.svg";
+import back from "../assets/back.svg";
 
 const TodoItem = ({ item, setTotalTasks, totalTasks }) => {
-
   const handleCheckbox = () => {
     setTotalTasks(
       totalTasks.map((el) =>
@@ -12,10 +11,22 @@ const TodoItem = ({ item, setTotalTasks, totalTasks }) => {
     );
   };
 
-  const handleDelete = () => {
+  const handleRemove = () => {
+    if (item.eliminated) {
+      return setTotalTasks(totalTasks.filter((el) => el.id !== item.id));
+    }
+
     setTotalTasks(
       totalTasks.map((el) =>
-        el.id === item.id ? { ...el, eliminated: !el.eliminated } : el
+        el.id === item.id ? { ...el, eliminated: true } : el
+      )
+    );
+  };
+
+  const handleRestart = () => {
+    setTotalTasks(
+      totalTasks.map((el) =>
+        el.id === item.id ? { ...el, eliminated: false } : el
       )
     );
   };
@@ -40,17 +51,19 @@ const TodoItem = ({ item, setTotalTasks, totalTasks }) => {
 
       {item.completed && (
         <div className="flex items-center gap-x-4">
-          {/* <img
-            src={back}
-            alt=""
-            className="cursor-pointer"
-            onClick={}
-          /> */}
+          {item.eliminated && (
+            <img
+              src={back}
+              alt=""
+              className="cursor-pointer"
+              onClick={handleRestart}
+            />
+          )}
           <img
             src={deleteIcon}
             alt=""
             className="cursor-pointer"
-            onClick={handleDelete}
+            onClick={handleRemove}
           />
         </div>
       )}
