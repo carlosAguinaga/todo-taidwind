@@ -12,6 +12,16 @@ function App() {
 
   const handleAddTodo = (e) => {
     e.preventDefault();
+
+    if (todoTitle === "") {
+      return console.log('La tarea introducida está vacia');
+    }
+
+    if (totalTasks.some(el => el.title === todoTitle)) {
+      setTodoTitle("");
+      return console.log('Ya hay una tarea con este nombre');
+    }
+
     setTotalTasks([
       ...totalTasks,
       { id: Date.now(), title: todoTitle, completed: false, eliminated: false },
@@ -32,9 +42,9 @@ function App() {
   }, [totalTasks]);
 
   return (
-    <div className="h-screen bg-blue-700 flex justify-center items-center">
-      <div className="w-full bg-blue-900 text-white py-10 rounded md:w-5/12 h-2/3 overflow-scroll">
-        <h2 className="text-left">TODO LIST</h2>
+    <div className="min-h-screen pt-1 bg-blue-700 flex justify-center items-center px-3">
+      <div className="w-full text-white py-10 rounded md:w-7/12  overflow-scroll">
+        <h1 className="text-center mb-4 text-3xl font-bold">TODO LIST</h1>
         <AddTodo
           setTodoTitle={setTodoTitle}
           handleAddTodo={handleAddTodo}

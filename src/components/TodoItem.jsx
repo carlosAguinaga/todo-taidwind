@@ -1,6 +1,4 @@
 import React from "react";
-import deleteIcon from "../assets/deleteIcon.svg";
-import back from "../assets/back.svg";
 
 const TodoItem = ({ item, setTotalTasks, totalTasks }) => {
   const handleCheckbox = () => {
@@ -32,7 +30,7 @@ const TodoItem = ({ item, setTotalTasks, totalTasks }) => {
   };
 
   return (
-    <div className="flex justify-between item-center w-full border-b border-gray-500 py-2">
+    <div className="flex justify-between item-center w-full bg-indigo-900 rounded-md py-3 px-4 my-3">
       <div className="flex items-center gap-x-4">
         {!item.eliminated && (
           <input
@@ -52,19 +50,37 @@ const TodoItem = ({ item, setTotalTasks, totalTasks }) => {
       {item.completed && (
         <div className="flex items-center gap-x-4">
           {item.eliminated && (
-            <img
-              src={back}
-              alt=""
-              className="cursor-pointer"
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 cursor-pointer hover: fill-current hover:text-green-400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
               onClick={handleRestart}
-            />
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"
+              />
+            </svg>
           )}
-          <img
-            src={deleteIcon}
-            alt=""
-            className="cursor-pointer"
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 cursor-pointer hover: fill-current hover:text-red-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
             onClick={handleRemove}
-          />
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+            />
+          </svg>
         </div>
       )}
     </div>
