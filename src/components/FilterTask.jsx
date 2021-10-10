@@ -5,7 +5,7 @@ const FilterTask = ({ currentFilter, setCurrentFilter }) => {
     <div className="flex flex-wrap justify-around mt-5">
       <button
         className={`flex text-xl  mx-1 ${
-          currentFilter === "Todas" ? "text-indigo-900 font-bold" : "text-purple-300"
+          currentFilter === "Todas" ? "text-yellow-500 font-bold" : "text-purple-300"
         }`}
         onClick={() => currentFilter !== "Todas" && setCurrentFilter("Todas")}
       >
@@ -14,7 +14,7 @@ const FilterTask = ({ currentFilter, setCurrentFilter }) => {
       <button
         className={`flex text-xl mx-1 ${
           currentFilter === "Completadas"
-            ? "text-indigo-900 font-bold"
+            ? "text-yellow-500 font-bold"
             : "text-purple-300"
         }`}
         onClick={() =>
@@ -26,7 +26,7 @@ const FilterTask = ({ currentFilter, setCurrentFilter }) => {
       <button
         className={`flex text-xl mx-1 ${
           currentFilter === "Incompletas"
-            ? "text-indigo-900 font-bold"
+            ? "text-yellow-500 font-bold"
             : "text-purple-300"
         }`}
         onClick={() =>
@@ -37,7 +37,7 @@ const FilterTask = ({ currentFilter, setCurrentFilter }) => {
       </button>
       <button
         className={`flex text-xl mx-1 ${
-          currentFilter === "Papelera" ? "text-indigo-900 font-bold" : "text-purple-300"
+          currentFilter === "Papelera" ? "text-yellow-500 font-bold" : "text-purple-300"
         }`}
         onClick={() =>
           currentFilter !== "Papelera" && setCurrentFilter("Papelera")
